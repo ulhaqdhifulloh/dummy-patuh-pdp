@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patuh PDP - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Background Design -->
+        <div class="background-design">
+            <div class="lines"></div>
+            <div class="dots"></div>
+        </div>
+
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <div class="person-icon">
+                            <div class="keyhole"></div>
+                        </div>
+                    </div>
+                    <div class="logo-text">
+                        <span class="patuh">Patuh</span>
+                        <span class="pdp">PDP</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span class="welcome-text">Welcome back,</span>
+                    <span class="user-name">Ulhaq</span>
+                </div>
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Stats Cards -->
+            <section class="stats-section">
+                <h2 class="section-title">Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">1,247</h3>
+                            <p class="stat-label">Data Requests</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">98.5%</h3>
+                            <p class="stat-label">Compliance Rate</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">2.3h</h3>
+                            <p class="stat-label">Avg Response Time</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number">156</h3>
+                            <p class="stat-label">Active Users</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activities -->
+            <section class="activities-section">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Activities</h2>
+                    <button class="view-all-btn">View All</button>
+                </div>
+                <div class="activities-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4 class="activity-title">Data Subject Request Processed</h4>
+                            <p class="activity-desc">Access request from user@example.com completed</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4 class="activity-title">Data Deletion Request</h4>
+                            <p class="activity-desc">Deletion request from customer@company.com</p>
+                            <span class="activity-time">4 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <div class="activity-content">
+                            <h4 class="activity-title">Data Rectification</h4>
+                            <p class="activity-desc">Update request for user profile information</p>
+                            <span class="activity-time">1 day ago</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="actions-section">
+                <h2 class="section-title">Quick Actions</h2>
+                <div class="actions-grid">
+                    <button class="action-btn">
+                        <i class="fas fa-plus"></i>
+                        <span>New Request</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-download"></i>
+                        <span>Export Report</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help</span>
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- n8n Chat Widget -->
+        <div id="n8n-chat-widget"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="mini-dpo-logo">
+            <span>by Mini DPO</span>
+            <div class="hand-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <span class="tagline">protecting your data</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        createChat({
+            webhookUrl: 'https://n8n-xjrdisltisbw.ceri.sumopod.my.id/webhook/0f1be330-14ba-4774-ba99-f34e6d886cae/chat',
+            target: '#n8n-chat-widget',
+            mode: 'window',
+            chatInputKey: 'chatInput',
+            chatSessionKey: 'sessionId',
+            loadPreviousSession: true,
+            metadata: {},
+            showWelcomeScreen: true,
+            defaultLanguage: 'id',
+            initialMessages: [
+                'Halo aku adalah Teman PDP yang memiliki wawasan seputar Pelindungan Data Pribadi di Indonesia, kamu boleh tanya apa aja seputar itu!'
+            ],
+            i18n: {
+                id: {
+                    title: 'Teman PDP',
+                    subtitle: 'Asisten Pelindung Data Pribadi Indonesia',
+                    getStarted: 'Mulai Percakapan Baru',
+                    inputPlaceholder: 'Ketik pertanyaan Anda...',
+                },
+            },
+            enableStreaming: false,
+            theme: {
+                primaryColor: '#ff4757',
+                secondaryColor: '#ff6b6b',
+                backgroundColor: '#ffffff',
+                textColor: '#333333',
+                borderColor: '#e9ecef',
+                borderRadius: '12px',
+                shadow: '0 8px 32px rgba(0, 0, 0, 0.15)',
+                userMessageColor: '#ff6b6b',
+                botMessageColor: '#ffffff',
+                sendButtonColor: '#ff4757',
+                sendButtonHoverColor: '#ff6b6b',
+            }
+        });
+    </script>
+</body>
+</html> 
