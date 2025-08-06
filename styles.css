@@ -451,9 +451,10 @@ body {
 }
 
 
-/* Send Button Styling */
+/* Send Button Styling - Higher specificity */
 #n8n-chat-widget button[part*="send-button"],
-#n8n-chat-widget .send-btn {
+#n8n-chat-widget .send-btn,
+#n8n-chat-widget button.chat-input-send-button {
     background: var(--chat--color-primary) !important;
     color: var(--chat--color-white) !important;
     border: none !important;
@@ -464,20 +465,50 @@ body {
     align-items: center !important;
     justify-content: center !important;
     cursor: pointer !important;
-    transition: background-color 0.2s !important;
+    transition: all 0.2s ease !important;
     opacity: 1 !important;
     visibility: visible !important;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3) !important;
 }
 
 #n8n-chat-widget button[part*="send-button"]:hover,
-#n8n-chat-widget .send-btn:hover {
+#n8n-chat-widget .send-btn:hover,
+#n8n-chat-widget button.chat-input-send-button:hover {
     background: var(--chat--color-secondary) !important;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4) !important;
+}
+
+/* Tombol aktif (ketika ada teks) */
+#n8n-chat-widget button[part*="send-button"]:not(:disabled),
+#n8n-chat-widget .send-btn:not(:disabled),
+#n8n-chat-widget button.chat-input-send-button:not(:disabled) {
+    background: var(--chat--color-primary) !important;
+    color: var(--chat--color-white) !important;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3) !important;
+}
+
+/* Styling untuk SVG icon di dalam tombol */
+#n8n-chat-widget button[part*="send-button"] svg path,
+#n8n-chat-widget .send-btn svg path,
+#n8n-chat-widget button.chat-input-send-button svg path {
+    fill: currentColor !important;
+}
+
+/* Tombol disabled - icon abu-abu */
+#n8n-chat-widget button[part*="send-button"]:disabled svg path,
+#n8n-chat-widget .send-btn:disabled svg path,
+#n8n-chat-widget button.chat-input-send-button:disabled svg path {
+    fill: #6c757d !important;
 }
 
 #n8n-chat-widget button[part*="send-button"]:disabled,
-#n8n-chat-widget .send-btn:disabled {
-    background: var(--chat--color-primary) !important;
+#n8n-chat-widget .send-btn:disabled,
+#n8n-chat-widget button.chat-input-send-button:disabled {
+    background: #e9ecef !important;
+    color: #6c757d !important;
     opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
 }
 
 /* Footer */
@@ -542,6 +573,103 @@ body {
         padding-bottom: 2rem;
         text-align: center;
     }
+}
+
+/* Additional high-specificity selectors for n8n chat */
+#n8n-chat-widget::part(chat-input-send-button) {
+    background: var(--chat--color-primary) !important;
+    color: var(--chat--color-white) !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 44px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3) !important;
+}
+
+#n8n-chat-widget::part(chat-input-send-button):hover {
+    background: var(--chat--color-secondary) !important;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4) !important;
+}
+
+#n8n-chat-widget::part(chat-input-send-button):disabled {
+    background: #e9ecef !important;
+    color: #6c757d !important;
+    opacity: 0 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
+
+/* Force override with !important and higher specificity */
+#n8n-chat-widget button[data-v-de5e7961].chat-input-send-button {
+    background: var(--chat--color-primary) !important;
+    color: var(--chat--color-white) !important;
+}
+
+#n8n-chat-widget button[data-v-de5e7961].chat-input-send-button:disabled {
+    background: #e9ecef !important;
+    color: #6c757d !important;
+    opacity: 0.6 !important;
+}
+
+#n8n-chat-widget button[data-v-de5e7961].chat-input-send-button:not(:disabled) {
+    background: var(--chat--color-primary) !important;
+    color: var(--chat--color-white) !important;
+}
+
+/* Ultra high specificity selectors */
+body #n8n-chat-widget button.chat-input-send-button {
+    background: #ff4757 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 44px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3) !important;
+    overflow: hidden !important;
+}
+
+body #n8n-chat-widget button.chat-input-send-button:disabled {
+    background: #e9ecef !important;
+    color: #6c757d !important;
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
+
+body #n8n-chat-widget button.chat-input-send-button:not(:disabled) {
+    background: #ff4757 !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3) !important;
+}
+
+body #n8n-chat-widget button.chat-input-send-button:hover:not(:disabled) {
+    background: #ff6b6b !important;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4) !important;
+}
+
+/* Prevent unwanted scrollbars */
+#n8n-chat-widget {
+    overflow: hidden !important;
+}
+
+#n8n-chat-widget * {
+    box-sizing: border-box !important;
 }
 
 /* n8n Chat Widget will handle its own styling */

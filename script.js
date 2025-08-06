@@ -150,5 +150,72 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start simulation
     simulateUpdates();
 
+    // Fix n8n chat button styling
+    function fixChatButtonStyling() {
+        // Wait for n8n chat widget to load
+        setTimeout(() => {
+            const sendButtons = document.querySelectorAll('#n8n-chat-widget button.chat-input-send-button');
+            sendButtons.forEach(button => {
+                // Force apply styles
+                button.style.setProperty('background', '#ff4757', 'important');
+                button.style.setProperty('color', '#ffffff', 'important');
+                button.style.setProperty('border', 'none', 'important');
+                button.style.setProperty('border-radius', '50%', 'important');
+                button.style.setProperty('width', '44px', 'important');
+                button.style.setProperty('height', '44px', 'important');
+                button.style.setProperty('display', 'flex', 'important');
+                button.style.setProperty('align-items', 'center', 'important');
+                button.style.setProperty('justify-content', 'center', 'important');
+                button.style.setProperty('cursor', 'pointer', 'important');
+                button.style.setProperty('transition', 'all 0.2s ease', 'important');
+                button.style.setProperty('opacity', '1', 'important');
+                button.style.setProperty('visibility', 'visible', 'important');
+                button.style.setProperty('box-shadow', '0 2px 8px rgba(255, 107, 107, 0.3)', 'important');
+
+                // Add event listeners for dynamic styling
+                button.addEventListener('mouseenter', function() {
+                    this.style.setProperty('background', '#ff6b6b', 'important');
+                    this.style.setProperty('box-shadow', '0 4px 12px rgba(255, 107, 107, 0.4)', 'important');
+                });
+
+                button.addEventListener('mouseleave', function() {
+                    if (!this.disabled) {
+                        this.style.setProperty('background', '#ff4757', 'important');
+                        this.style.setProperty('box-shadow', '0 2px 8px rgba(255, 107, 107, 0.3)', 'important');
+                    }
+                });
+
+                // Monitor disabled state
+                const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.type === 'attributes' && mutation.attributeName === 'disabled') {
+                            if (button.disabled) {
+                                button.style.setProperty('background', '#e9ecef', 'important');
+                                button.style.setProperty('color', '#6c757d', 'important');
+                                button.style.setProperty('opacity', '0.6', 'important');
+                                button.style.setProperty('cursor', 'not-allowed', 'important');
+                                button.style.setProperty('box-shadow', 'none', 'important');
+                            } else {
+                                button.style.setProperty('background', '#ff4757', 'important');
+                                button.style.setProperty('color', '#ffffff', 'important');
+                                button.style.setProperty('opacity', '1', 'important');
+                                button.style.setProperty('cursor', 'pointer', 'important');
+                                button.style.setProperty('box-shadow', '0 2px 8px rgba(255, 107, 107, 0.3)', 'important');
+                            }
+                        }
+                    });
+                });
+
+                observer.observe(button, {
+                    attributes: true,
+                    attributeFilter: ['disabled']
+                });
+            });
+        }, 2000); // Wait 2 seconds for widget to load
+    }
+
+    // Apply chat button styling
+    fixChatButtonStyling();
+
     console.log('Patuh PDP Dashboard loaded successfully!');
 }); 
